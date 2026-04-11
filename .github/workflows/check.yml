@@ -4,7 +4,7 @@ on:
   schedule:
     # Every 10 minutes — stays within GitHub Actions free tier for private repos
     # (10-min interval = ~4,320 runs/month × ~20s = ~1,440 min < 2,000 free min)
-    - cron: "*/5 * * * *"
+    - cron: "*/10 * * * *"
   workflow_dispatch:
 
 jobs:
