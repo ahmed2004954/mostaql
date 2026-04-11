@@ -30,6 +30,7 @@ def build_message(project: dict) -> str:
         "🚀 <b>مشروع جديد على مستقل</b>",
         "",
         f"🧩 <b>العنوان:</b> {title}",
+        "",
         f"📝 <b>التفاصيل:</b> {details}",
         "",
         "📊 <b>معلومات سريعة</b>",
