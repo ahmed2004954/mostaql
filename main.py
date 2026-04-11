@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 
 from notifier import notify
-from scraper import fetch_projects
+from scraper import enrich_project, fetch_projects
 
 DB_PATH = Path("seen_ids.json")
 FIRST_RUN_N = 3
@@ -33,14 +33,14 @@ def main():
         to_notify = projects[:FIRST_RUN_N]
         for project in to_notify:
             print(f"[FIRST RUN] Sending: {project['title']}")
-            notify(project)
+            notify(enrich_project(project))
         seen = {project["id"] for project in projects}
     else:
         # Normal run: only notify truly new projects, oldest first
         new_projects = [project for project in projects if project["id"] not in seen]
         for project in reversed(new_projects):
             print(f"[NEW] Sending: {project['title']}")
-            notify(project)
+            notify(enrich_project(project))
             seen.add(project["id"])
 
     save_seen(seen)
