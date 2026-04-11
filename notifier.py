@@ -36,7 +36,7 @@ async def _send(text: str):
         chat_id=CHAT_ID,
         text=text,
         parse_mode=ParseMode.HTML,
-        disable_web_page_preview=False,
+        disable_web_page_preview=True,
     )
 
 
