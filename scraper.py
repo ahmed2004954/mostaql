@@ -148,7 +148,7 @@ def fetch_projects() -> list[dict]:
 def enrich_project(project: dict) -> dict:
     """
     Fetches the Mostaql project page and augments the project dict with:
-    details, published_at, budget, execution_duration, hiring_rate.
+    details, published_at, budget, execution_duration, hiring_rate, applicants_count.
     """
     soup, _ = _get_soup(project["url"])
 
@@ -158,6 +158,7 @@ def enrich_project(project: dict) -> dict:
     meta_panel = soup.select_one("#project-meta-panel-panel")
     meta_rows = _extract_meta_rows(meta_panel)
     employer_stats = _extract_employer_stats(soup)
+    applicants_count = str(len(soup.select("#bidsCollection-panel [data-bid-item]")))
 
     enriched = dict(project)
     enriched["details"] = details
@@ -165,4 +166,5 @@ def enrich_project(project: dict) -> dict:
     enriched["budget"] = meta_rows.get("الميزانية", "")
     enriched["execution_duration"] = meta_rows.get("مدة التنفيذ", "")
     enriched["hiring_rate"] = employer_stats.get("معدل التوظيف", "")
+    enriched["applicants_count"] = applicants_count
     return enriched

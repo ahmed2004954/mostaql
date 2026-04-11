@@ -17,6 +17,7 @@ def build_message(project: dict) -> str:
     budget = html.escape(project.get("budget", "—"))
     execution_duration = html.escape(project.get("execution_duration", "—"))
     hiring_rate = html.escape(project.get("hiring_rate", "—"))
+    applicants_count = html.escape(project.get("applicants_count", "—"))
 
     return (
         f"🆕 <b>مشروع جديد على مستقل — برمجة</b>\n\n"
@@ -26,6 +27,7 @@ def build_message(project: dict) -> str:
         f"💰 <b>الميزانية:</b> {budget}\n"
         f"⏳ <b>مدة التنفيذ:</b> {execution_duration}\n"
         f"📊 <b>معدل التوظيف:</b> {hiring_rate}\n"
+        f"👥 <b>عدد المتقدمين:</b> {applicants_count}\n"
         f"🔗 <a href='{url}'>فتح المشروع</a>"
     )
 
